@@ -17,9 +17,10 @@
 ### 1.1. Mục tiêu bài toán
 Xây dựng ứng dụng Android hoàn chỉnh bằng **Java** và **XML layout** trên **Android Studio** với ngôn ngữ thiết kế hiện đại, tối giản và tinh tế:
 1. **LoginActivity (Đăng nhập):** Xác thực tài khoản cố định (`admin` / `123456`), giao diện thẻ thương hiệu `[Danh bạ]`, khẩu hiệu *"Kết nối gần hơn."*, input bo góc mềm không viền, báo lỗi tinh gọn kèm icon đỏ.
-2. **MainActivity (Danh sách liên hệ):** Header trắng với avatar profile, khối thống kê tối giản inline (`[3] Liên hệ  [1] Yêu thích`), danh sách liên hệ thẻ trắng tối giản với avatar tròn màu pastel dịu mắt, dấu sao teal yêu thích, và nút bấm nổi **Floating Action Button (+)** ở góc dưới bên phải.
+2. **MainActivity (Danh sách liên hệ):** Header trắng với avatar profile, khối thống kê tối giản kiêm **Tab lọc thông minh** (`[X] Liên hệ` và `[Y] Yêu thích`), **thanh tìm kiếm thời gian thực (Search bar)**, danh sách liên hệ thẻ trắng tối giản với avatar tròn màu pastel dịu mắt, dấu sao teal yêu thích, và nút bấm nổi **Floating Action Button (+)** ở góc dưới bên phải.
 3. **AddContactActivity (Thêm liên hệ):** Nút mũi tên quay lại và nút "Hủy" chữ xám ở góc trên, các ô nhập liệu dạng filled light gray, Spinner nhóm, chọn Giới tính dạng **Segmented Control 3 tab (Nam | Nữ | Khác)**, Checkbox yêu thích kèm sao, ô ghi chú nhiều dòng và nút "Lưu liên hệ".
-4. **ContactDetailActivity (Chi tiết liên hệ):** Avatar tròn pastel lớn ở giữa kèm tên và số điện thoại, nút bấm sao "☆ Yêu thích" đổi trạng thái trực tiếp, **hàng 3 nút hành động tròn (Gọi điện | Nhắn tin | Chỉnh sửa)**, thẻ thông tin chia 2 cột cho Nhóm & Giới tính, thẻ riêng cho Ghi chú, và nút đỏ "Xóa liên hệ" với biểu tượng thùng rác ở đáy màn hình.
+4. **EditContactActivity (Chỉnh sửa liên hệ):** Cho phép sửa toàn diện thông tin liên hệ (họ tên, SĐT, nhóm, giới tính, yêu thích, ghi chú) kèm validation không trùng với số điện thoại của người khác.
+5. **ContactDetailActivity (Chi tiết liên hệ):** Avatar tròn pastel lớn ở giữa kèm tên và số điện thoại, nút bấm sao "☆ Yêu thích" đổi trạng thái trực tiếp, **hàng 3 nút hành động tròn (Gọi điện | Nhắn tin | Chỉnh sửa)**, thẻ thông tin chia 2 cột cho Nhóm & Giới tính, thẻ riêng cho Ghi chú, và nút đỏ "Xóa liên hệ" với biểu tượng thùng rác ở đáy màn hình.
 
 ### 1.2. Công nghệ và kỹ thuật áp dụng
 - **Ngôn ngữ:** Java (JDK 8/17/25).
