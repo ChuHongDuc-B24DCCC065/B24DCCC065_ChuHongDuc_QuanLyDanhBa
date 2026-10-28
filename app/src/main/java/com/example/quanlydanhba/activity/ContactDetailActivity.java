@@ -5,10 +5,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +21,12 @@ import com.example.quanlydanhba.model.Contact;
 
 /**
  * Màn hình 4: Chi tiết liên hệ (ContactDetailActivity)
- * - Hiển thị đầy đủ thông tin: họ tên, ảnh đại diện chữ cái, SĐT, nhóm, giới tính, ghi chú, yêu thích
- * - CheckBox Yêu thích: có thể thay đổi trực tiếp, cập nhật danh sách và thống kê khi quay lại
- * - Nút "Gọi điện": Intent ngầm định (ACTION_DIAL) mở màn hình quay số
- * - Nút "Quay lại": đóng màn hình và trả về kết quả
- * - Nút "Xóa liên hệ": xác nhận xóa, xóa khỏi danh sách và cập nhật thống kê
+ * Thiết kế giao diện hiện đại, tối giản đúng theo mẫu phác thảo:
+ * - Avatar tròn lớn ở giữa kèm Họ tên & SĐT
+ * - Nút gắn sao Yêu thích tương tác trực tiếp
+ * - Hàng 3 nút hành động tròn: Gọi điện | Nhắn tin | Chỉnh sửa
+ * - Thẻ thông tin Nhóm, Giới tính, Ghi chú
+ * - Nút Xóa liên hệ ở dưới cùng
  */
 public class ContactDetailActivity extends AppCompatActivity {
 
@@ -35,13 +35,18 @@ public class ContactDetailActivity extends AppCompatActivity {
     private TextView tvDetailAvatarInitial;
     private TextView tvDetailName;
     private TextView tvDetailPhone;
+    private LinearLayout btnToggleFavorite;
+    private ImageView ivDetailStar;
+    private TextView tvDetailFavoriteStatus;
+
+    private FrameLayout btnActionCall;
+    private FrameLayout btnActionMessage;
+    private FrameLayout btnActionEdit;
+
     private TextView tvDetailGroup;
     private TextView tvDetailGender;
     private TextView tvDetailNote;
-    private CheckBox cbDetailFavorite;
-    private Button btnCall;
-    private Button btnBack;
-    private Button btnDelete;
+    private LinearLayout btnDeleteContactAction;
 
     private Contact currentContact;
     private int contactPosition = -1;
@@ -72,19 +77,24 @@ public class ContactDetailActivity extends AppCompatActivity {
         tvDetailAvatarInitial = findViewById(R.id.tvDetailAvatarInitial);
         tvDetailName = findViewById(R.id.tvDetailName);
         tvDetailPhone = findViewById(R.id.tvDetailPhone);
+        btnToggleFavorite = findViewById(R.id.btnToggleFavorite);
+        ivDetailStar = findViewById(R.id.ivDetailStar);
+        tvDetailFavoriteStatus = findViewById(R.id.tvDetailFavoriteStatus);
+
+        btnActionCall = findViewById(R.id.btnActionCall);
+        btnActionMessage = findViewById(R.id.btnActionMessage);
+        btnActionEdit = findViewById(R.id.btnActionEdit);
+
         tvDetailGroup = findViewById(R.id.tvDetailGroup);
         tvDetailGender = findViewById(R.id.tvDetailGender);
         tvDetailNote = findViewById(R.id.tvDetailNote);
-        cbDetailFavorite = findViewById(R.id.cbDetailFavorite);
-        btnCall = findViewById(R.id.btnCall);
-        btnBack = findViewById(R.id.btnBack);
-        btnDelete = findViewById(R.id.btnDelete);
+        btnDeleteContactAction = findViewById(R.id.btnDeleteContactAction);
     }
 
     private void displayContactData() {
         if (currentContact == null) return;
 
-        // Họ tên & SĐT
+        // Họ tên & Số điện thoại
         tvDetailName.setText(currentContact.getName());
         tvDetailPhone.setText(currentContact.getPhoneNumber());
 
@@ -99,36 +109,47 @@ public class ContactDetailActivity extends AppCompatActivity {
             tvDetailNote.setText("(Không có ghi chú)");
         }
 
-        // CheckBox yêu thích
-        cbDetailFavorite.setChecked(currentContact.isFavorite());
-
-        // Avatar tròn chứa ký tự đầu
+        // Avatar tròn lớn màu pastel
         tvDetailAvatarInitial.setText(currentContact.getInitialLetter());
+        tvDetailAvatarInitial.setTextColor(currentContact.getAvatarTextColor());
+
         GradientDrawable avatarDrawable = new GradientDrawable();
         avatarDrawable.setShape(GradientDrawable.OVAL);
-        avatarDrawable.setColor(currentContact.getAvatarColor());
+        avatarDrawable.setColor(currentContact.getAvatarBgColor());
         layoutDetailAvatar.setBackground(avatarDrawable);
+
+        updateFavoriteUI();
+    }
+
+    private void updateFavoriteUI() {
+        if (currentContact.isFavorite()) {
+            ivDetailStar.setImageResource(R.drawable.ic_star_filled_teal);
+            tvDetailFavoriteStatus.setText(R.string.stats_favorite);
+        } else {
+            ivDetailStar.setImageResource(R.drawable.ic_star_outline_teal);
+            tvDetailFavoriteStatus.setText(R.string.stats_favorite);
+        }
     }
 
     private void setupListeners() {
-        // Nút quay lại trên thanh tiêu đề
+        // Nút quay lại
         btnBackDetailHeader.setOnClickListener(v -> returnWithResult());
 
-        // Nút Quay lại bên dưới
-        btnBack.setOnClickListener(v -> returnWithResult());
-
-        // Thay đổi trạng thái Yêu thích
-        cbDetailFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        // Chuyển đổi trạng thái Yêu thích
+        btnToggleFavorite.setOnClickListener(v -> {
             if (currentContact != null) {
-                currentContact.setFavorite(isChecked);
+                boolean newFav = !currentContact.isFavorite();
+                currentContact.setFavorite(newFav);
+                updateFavoriteUI();
                 if (contactPosition >= 0) {
                     ContactManager.getInstance().updateContact(contactPosition, currentContact);
                 }
+                Toast.makeText(this, newFav ? "Đã thêm vào yêu thích" : "Đã bỏ khỏi yêu thích", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Nút Gọi điện: sử dụng Intent ngầm định ACTION_DIAL
-        btnCall.setOnClickListener(v -> {
+        // 1. Gọi điện: Intent ngầm định ACTION_DIAL
+        btnActionCall.setOnClickListener(v -> {
             if (currentContact != null && currentContact.getPhoneNumber() != null) {
                 Intent dialIntent = new Intent(Intent.ACTION_DIAL);
                 dialIntent.setData(Uri.parse("tel:" + currentContact.getPhoneNumber()));
@@ -136,8 +157,22 @@ public class ContactDetailActivity extends AppCompatActivity {
             }
         });
 
+        // 2. Nhắn tin: Intent ngầm định ACTION_SENDTO (sms)
+        btnActionMessage.setOnClickListener(v -> {
+            if (currentContact != null && currentContact.getPhoneNumber() != null) {
+                Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+                smsIntent.setData(Uri.parse("smsto:" + currentContact.getPhoneNumber()));
+                startActivity(smsIntent);
+            }
+        });
+
+        // 3. Chỉnh sửa
+        btnActionEdit.setOnClickListener(v -> {
+            Toast.makeText(this, "Chức năng chỉnh sửa thông tin liên hệ", Toast.LENGTH_SHORT).show();
+        });
+
         // Nút Xóa liên hệ
-        btnDelete.setOnClickListener(v -> confirmAndDeleteContact());
+        btnDeleteContactAction.setOnClickListener(v -> confirmAndDeleteContact());
     }
 
     private void setupBackPressedHandler() {

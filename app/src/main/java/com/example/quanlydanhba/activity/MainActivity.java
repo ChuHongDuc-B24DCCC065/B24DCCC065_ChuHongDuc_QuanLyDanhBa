@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -17,14 +16,15 @@ import com.example.quanlydanhba.R;
 import com.example.quanlydanhba.adapter.ContactAdapter;
 import com.example.quanlydanhba.data.ContactManager;
 import com.example.quanlydanhba.model.Contact;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 /**
  * Màn hình 2: Danh sách liên hệ (MainActivity)
- * - Khối thống kê: hiển thị tổng số liên hệ và số liên hệ yêu thích
- * - Danh sách liên hệ (RecyclerView): ảnh đại diện tròn, họ tên, số điện thoại, nhóm, dấu sao
- * - Nút "+ Thêm liên hệ": mở AddContactActivity
+ * - Khối thống kê tối giản: [Số] Liên hệ, [Số] Yêu thích
+ * - Danh sách liên hệ (RecyclerView): Card tối giản, avatar tròn pastel
+ * - Nút FloatingActionButton (+): góc dưới bên phải mở AddContactActivity
  * - Nhấn vào một liên hệ: mở ContactDetailActivity
  */
 public class MainActivity extends AppCompatActivity implements ContactAdapter.OnContactClickListener {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.On
     private RecyclerView rvContacts;
     private TextView tvEmpty;
     private TextView tvHintDetail;
-    private Button btnAddContact;
+    private FloatingActionButton fabAddContact;
 
     private ArrayList<Contact> contactList;
     private ContactAdapter adapter;
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.On
                 if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                     Contact newContact = (Contact) result.getData().getSerializableExtra("new_contact");
                     if (newContact != null) {
-                        // Nếu ContactManager chưa thêm thì thêm vào danh sách
                         if (!contactList.contains(newContact)) {
                             contactList.add(newContact);
                         }
@@ -63,11 +62,9 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.On
                     int position = result.getData().getIntExtra("position", -1);
 
                     if (isDeleted && position >= 0 && position < contactList.size()) {
-                        // Xóa liên hệ
                         contactList.remove(position);
                         adapter.notifyItemRemoved(position);
                     } else if (position >= 0 && position < contactList.size()) {
-                        // Cập nhật trạng thái liên hệ (ví dụ: yêu thích)
                         Contact updatedContact = (Contact) result.getData().getSerializableExtra("updated_contact");
                         if (updatedContact != null) {
                             contactList.set(position, updatedContact);
@@ -92,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.On
     @Override
     protected void onResume() {
         super.onResume();
-        // Đồng bộ dữ liệu và cập nhật thống kê khi quay lại màn hình
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.On
         rvContacts = findViewById(R.id.rvContacts);
         tvEmpty = findViewById(R.id.tvEmpty);
         tvHintDetail = findViewById(R.id.tvHintDetail);
-        btnAddContact = findViewById(R.id.btnAddContact);
+        fabAddContact = findViewById(R.id.fabAddContact);
     }
 
     private void setupRecyclerView() {
@@ -116,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.On
     }
 
     private void setupListeners() {
-        btnAddContact.setOnClickListener(v -> {
+        fabAddContact.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
             addContactLauncher.launch(intent);
         });

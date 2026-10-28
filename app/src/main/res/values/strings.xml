@@ -1,27 +1,32 @@
 <resources>
     <string name="app_name">Danh bạ</string>
-    <string name="login_title">Danh bạ</string>
+
+    <!-- Màn hình 1: Đăng nhập -->
+    <string name="login_title_badge">Danh bạ</string>
+    <string name="login_main_heading">Kết nối gần hơn.</string>
     <string name="login_subtitle">Đăng nhập để tiếp tục</string>
     <string name="username_label">Tên đăng nhập</string>
     <string name="username_hint">Nhập tên đăng nhập</string>
     <string name="password_label">Mật khẩu</string>
     <string name="password_hint">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</string>
     <string name="btn_login">Đăng nhập</string>
-    <string name="account_sample_hint">Tài khoản mẫu: admin / 123456</string>
-    <string name="login_error_empty">Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu</string>
+    <string name="account_sample_title">Tài khoản mẫu</string>
+    <string name="account_sample_value">admin / 123456</string>
+    <string name="login_error_empty">Vui lòng nhập đầy đủ thông tin đăng nhập</string>
     <string name="login_error_invalid">Sai tên đăng nhập hoặc mật khẩu</string>
     <string name="login_success">Đăng nhập thành công!</string>
 
+    <!-- Màn hình 2: Danh sách liên hệ -->
     <string name="main_title">Danh bạ của tôi</string>
-    <string name="stats_title">Thống kê</string>
-    <string name="stats_total">Tổng liên hệ</string>
+    <string name="stats_contacts">Liên hệ</string>
     <string name="stats_favorite">Yêu thích</string>
     <string name="contact_list_header">Danh sách liên hệ</string>
-    <string name="contact_list_hint">(nhấn vào một liên hệ để xem chi tiết)</string>
-    <string name="btn_add_contact">+ Thêm liên hệ</string>
+    <string name="contact_list_hint">Nhấn vào một liên hệ để xem chi tiết</string>
     <string name="empty_contact_list">Chưa có liên hệ nào trong danh bạ</string>
 
+    <!-- Màn hình 3: Thêm liên hệ -->
     <string name="add_contact_title">Thêm liên hệ</string>
+    <string name="action_cancel">Hủy</string>
     <string name="name_label">Họ và tên</string>
     <string name="name_hint">Ví dụ: Nguyễn Văn An</string>
     <string name="phone_label">Số điện thoại</string>
@@ -36,15 +41,17 @@
     <string name="note_hint">Nhập ghi chú (nhiều dòng)...</string>
     <string name="btn_save_contact">Lưu liên hệ</string>
 
+    <!-- Màn hình 4: Chi tiết liên hệ -->
     <string name="detail_title">Chi tiết liên hệ</string>
-    <string name="btn_call">Gọi điện</string>
-    <string name="btn_back">Quay lại</string>
-    <string name="btn_delete">Xóa liên hệ</string>
+    <string name="action_call">Gọi điện</string>
+    <string name="action_message">Nhắn tin</string>
+    <string name="action_edit">Chỉnh sửa</string>
+    <string name="action_delete">Xóa liên hệ</string>
     <string name="confirm_delete_title">Xác nhận xóa</string>
     <string name="confirm_delete_msg">Bạn có chắc chắn muốn xóa liên hệ này không?</string>
     <string name="action_yes">Xóa</string>
-    <string name="action_cancel">Hủy</string>
 
+    <!-- Thông báo lỗi & kết quả -->
     <string name="error_name_empty">Họ và tên không được để trống!</string>
     <string name="error_phone_empty">Số điện thoại không được để trống!</string>
     <string name="error_phone_invalid">Số điện thoại phải gồm 10 chữ số và bắt đầu bằng 0!</string>

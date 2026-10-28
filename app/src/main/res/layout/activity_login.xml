@@ -9,70 +9,81 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingStart="24dp"
-        android:paddingTop="50dp"
+        android:paddingTop="36dp"
         android:paddingEnd="24dp"
-        android:paddingBottom="30dp">
+        android:paddingBottom="24dp">
 
-        <!-- Logo Icon điện thoại tròn -->
-        <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_circle_teal">
-
-            <ImageView
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_phone_dialer" />
-        </FrameLayout>
-
-        <!-- Tiêu đề & phụ đề -->
-        <TextView
-            android:id="@+id/tvAppTitle"
+        <!-- Top Badge: [ [icon] Danh bạ ] -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/login_title"
+            android:background="@drawable/bg_badge_icon_app"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_contact_book" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/login_title_badge"
+                android:textColor="@color/primary_teal_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tiêu đề lớn & Phụ đề -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/login_main_heading"
             android:textColor="@color/text_primary"
             android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvAppSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:text="@string/login_subtitle"
-            android:textColor="@color/text_secondary"
-            android:textSize="15sp" />
+            android:textColor="@color/text_hint"
+            android:textSize="14sp" />
 
-        <!-- Form đăng nhập -->
+        <!-- Form nhập liệu -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="32dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- Label Tên đăng nhập (1) -->
+            <!-- Label Tên đăng nhập -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/username_label"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
 
-            <!-- EditText Tên đăng nhập -->
+            <!-- Input Tên đăng nhập -->
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edit_text"
+                android:background="@drawable/bg_input_rounded"
                 android:hint="@string/username_hint"
                 android:inputType="text"
                 android:maxLines="1"
@@ -80,25 +91,24 @@
                 android:paddingEnd="16dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_hint"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
-            <!-- Label Mật khẩu (2) -->
+            <!-- Label Mật khẩu -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
                 android:text="@string/password_label"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
 
-            <!-- EditText Mật khẩu -->
+            <!-- Input Mật khẩu -->
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edit_text"
+                android:background="@drawable/bg_input_rounded"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
                 android:maxLines="1"
@@ -106,45 +116,73 @@
                 android:paddingEnd="16dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_hint"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
-            <!-- Thông báo lỗi (3) -->
-            <TextView
-                android:id="@+id/tvError"
+            <!-- Thông báo lỗi kèm biểu tượng chấm than tròn đỏ -->
+            <LinearLayout
+                android:id="@+id/layoutError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="@string/login_error_invalid"
-                android:textColor="@color/danger_red"
-                android:textSize="13sp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="visible">
 
-            <!-- Nút Đăng nhập (4) -->
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_error_circle" />
+
+                <TextView
+                    android:id="@+id/tvError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/login_error_invalid"
+                    android:textColor="@color/danger_red"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Nút Đăng nhập -->
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/btn_teal_rounded"
+                android:background="@drawable/bg_button_primary"
                 android:stateListAnimator="@null"
                 android:text="@string/btn_login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <!-- Gợi ý tài khoản mẫu -->
-            <TextView
-                android:id="@+id/tvAccountHint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="@string/account_sample_hint"
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
         </LinearLayout>
+
+        <!-- Footer: Tài khoản mẫu -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_sample_title"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/account_sample_value"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

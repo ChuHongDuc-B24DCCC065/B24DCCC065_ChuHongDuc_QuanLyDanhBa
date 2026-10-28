@@ -94,46 +94,75 @@ public class Contact implements Serializable {
     }
 
     /**
-     * Trả về màu sắc đại diện cho chữ cái đầu của tên
+     * Trả về màu nền pastel nhẹ cho Avatar (theo chữ cái)
      */
-    public int getAvatarColor() {
+    public int getAvatarBgColor() {
         String initial = getInitialLetter();
         if (initial.isEmpty()) {
-            return Color.parseColor("#00796B");
+            return Color.parseColor("#D1FAE5");
         }
         char c = initial.charAt(0);
         switch (c) {
             case 'A':
-                return Color.parseColor("#00796B"); // Xanh teal đậm (như An trong Hình 4)
+                return Color.parseColor("#D1FAE5"); // Xanh lục pastel nhẹ (An)
             case 'B':
-                return Color.parseColor("#D84315"); // Cam đỏ (như Bình trong Hình 4)
+                return Color.parseColor("#D1FAE5"); // Xanh lục pastel nhẹ (Bình)
             case 'C':
-                return Color.parseColor("#5E35B1"); // Tím đậm (như Châu trong Hình 4)
+                return Color.parseColor("#EDE9FE"); // Tím pastel nhẹ (Châu)
             case 'D':
             case 'Đ':
-                return Color.parseColor("#1565C0"); // Xanh dương
+                return Color.parseColor("#DBEAFE"); // Xanh dương pastel
             case 'H':
             case 'K':
-                return Color.parseColor("#2E7D32"); // Xanh lá
+                return Color.parseColor("#CCFBF1"); // Xanh ngọc pastel
             case 'L':
             case 'M':
-                return Color.parseColor("#C2185B"); // Hồng sen
-            case 'N':
-            case 'P':
-                return Color.parseColor("#00838F"); // Xanh lơ
-            case 'T':
-            case 'V':
-                return Color.parseColor("#E65100"); // Cam cháy
+                return Color.parseColor("#FCE7F3"); // Hồng pastel
             default:
-                int hash = Math.abs(initial.hashCode()) % 5;
-                int[] fallbackColors = {
-                        Color.parseColor("#00796B"),
-                        Color.parseColor("#D84315"),
-                        Color.parseColor("#5E35B1"),
-                        Color.parseColor("#1565C0"),
-                        Color.parseColor("#2E7D32")
+                int hash = Math.abs(initial.hashCode()) % 4;
+                int[] bgColors = {
+                        Color.parseColor("#D1FAE5"),
+                        Color.parseColor("#EDE9FE"),
+                        Color.parseColor("#DBEAFE"),
+                        Color.parseColor("#CCFBF1")
                 };
-                return fallbackColors[hash];
+                return bgColors[hash];
+        }
+    }
+
+    /**
+     * Trả về màu chữ đậm tương phản cho Avatar
+     */
+    public int getAvatarTextColor() {
+        String initial = getInitialLetter();
+        if (initial.isEmpty()) {
+            return Color.parseColor("#059669");
+        }
+        char c = initial.charAt(0);
+        switch (c) {
+            case 'A':
+            case 'B':
+                return Color.parseColor("#059669"); // Xanh lục đậm
+            case 'C':
+                return Color.parseColor("#7C3AED"); // Tím đậm
+            case 'D':
+            case 'Đ':
+                return Color.parseColor("#2563EB"); // Xanh dương đậm
+            case 'H':
+            case 'K':
+                return Color.parseColor("#0D9488"); // Xanh ngọc đậm
+            case 'L':
+            case 'M':
+                return Color.parseColor("#DB2777"); // Hồng đậm
+            default:
+                int hash = Math.abs(initial.hashCode()) % 4;
+                int[] textColors = {
+                        Color.parseColor("#059669"),
+                        Color.parseColor("#7C3AED"),
+                        Color.parseColor("#2563EB"),
+                        Color.parseColor("#0D9488")
+                };
+                return textColors[hash];
         }
     }
 }

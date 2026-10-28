@@ -7,10 +7,9 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary_teal_light</item>
-        <item name="colorSecondaryVariant">@color/accent_teal</item>
         <item name="colorOnSecondary">@color/white</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/primary_teal</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <!-- Status bar color: white with dark icons like iOS / Modern Material -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

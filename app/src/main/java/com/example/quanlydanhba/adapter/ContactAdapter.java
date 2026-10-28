@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Adapter cho RecyclerView hiển thị danh sách các liên hệ.
- * Mỗi dòng hiển thị: chữ cái đầu của tên (ảnh đại diện tròn), họ tên, số điện thoại, nhóm và dấu sao yêu thích.
+ * Thiết kế tối giản, tinh tế theo phong cách hiện đại.
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
@@ -55,14 +55,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         // Nhóm
         holder.tvContactGroup.setText(contact.getGroup());
 
-        // Avatar tròn với chữ cái đầu
+        // Avatar tròn với nền màu pastel nhẹ và chữ đậm tương phản
         holder.tvAvatarInitial.setText(contact.getInitialLetter());
+        holder.tvAvatarInitial.setTextColor(contact.getAvatarTextColor());
+
         GradientDrawable avatarDrawable = new GradientDrawable();
         avatarDrawable.setShape(GradientDrawable.OVAL);
-        avatarDrawable.setColor(contact.getAvatarColor());
+        avatarDrawable.setColor(contact.getAvatarBgColor());
         holder.layoutAvatar.setBackground(avatarDrawable);
 
-        // Dấu sao vàng yêu thích
+        // Dấu sao teal (hiển thị khi là liên hệ yêu thích)
         if (contact.isFavorite()) {
             holder.ivFavoriteStar.setVisibility(View.VISIBLE);
         } else {

@@ -2,21 +2,20 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/input_bg" />
-            <stroke android:width="1.2dp" android:color="@color/border_color" />
-            <corners android:radius="10dp" />
+            <solid android:color="@color/bg_input" />
+            <corners android:radius="12dp" />
         </shape>
     </item>
     <item
         android:gravity="end|center_vertical"
-        android:right="14dp">
+        android:right="16dp">
         <vector
             android:width="12dp"
             android:height="8dp"
             android:viewportWidth="12"
             android:viewportHeight="8">
             <path
-                android:fillColor="#64748B"
+                android:fillColor="@color/text_secondary"
                 android:pathData="M1.41,0.59L6,5.17l4.59,-4.58L12,2l-6,6 -6,-6z" />
         </vector>
     </item>

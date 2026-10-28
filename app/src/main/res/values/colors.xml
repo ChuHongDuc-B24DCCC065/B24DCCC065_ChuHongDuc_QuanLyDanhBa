@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand & Theme Colors -->
-    <color name="primary_teal">#00695C</color>
-    <color name="primary_teal_dark">#004D40</color>
-    <color name="primary_teal_light">#00897B</color>
-    <color name="accent_teal">#26A69A</color>
+    <!-- Brand / Theme Colors (Fresh Teal / Emerald Green like image) -->
+    <color name="primary_teal">#0D9488</color>
+    <color name="primary_teal_dark">#0F766E</color>
+    <color name="primary_teal_light">#14B8A6</color>
+    <color name="primary_teal_soft">#E6F7F3</color>
+    <color name="primary_teal_soft_selected">#D1FAE5</color>
 
-    <!-- UI Backgrounds -->
-    <color name="bg_screen">#F8FAFC</color>
+    <!-- Neutral & Backgrounds -->
+    <color name="bg_screen">#FFFFFF</color>
+    <color name="bg_input">#F3F4F6</color>
     <color name="card_bg">#FFFFFF</color>
-    <color name="input_bg">#FFFFFF</color>
-    <color name="border_color">#CBD5E1</color>
-    <color name="divider_color">#E2E8F0</color>
+    <color name="border_card">#F3F4F6</color>
+    <color name="border_light">#E5E7EB</color>
+    <color name="divider_color">#F3F4F6</color>
 
     <!-- Text Colors -->
-    <color name="text_primary">#1E293B</color>
-    <color name="text_secondary">#64748B</color>
-    <color name="text_hint">#94A3B8</color>
+    <color name="text_primary">#111827</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
     <!-- State & Accent Colors -->
-    <color name="danger_red">#D32F2F</color>
-    <color name="danger_red_hover">#B71C1C</color>
-    <color name="favorite_gold">#FFB300</color>
-    
-    <!-- Badge Colors -->
-    <color name="badge_bg">#E0F2F1</color>
-    <color name="badge_text">#00695C</color>
+    <color name="danger_red">#EF4444</color>
+    <color name="danger_red_soft">#FEE2E2</color>
+    <color name="favorite_star">#0D9488</color>
 
-    <!-- Avatar Colors for Initials -->
-    <color name="avatar_teal">#00796B</color>
-    <color name="avatar_orange">#D84315</color>
-    <color name="avatar_purple">#5E35B1</color>
-    <color name="avatar_blue">#1565C0</color>
-    <color name="avatar_green">#2E7D32</color>
-    <color name="avatar_pink">#C2185B</color>
+    <!-- Soft Pastel Avatar Backgrounds & Text Colors -->
+    <color name="avatar_bg_green">#D1FAE5</color>
+    <color name="avatar_text_green">#059669</color>
+
+    <color name="avatar_bg_teal">#CCFBF1</color>
+    <color name="avatar_text_teal">#0D9488</color>
+
+    <color name="avatar_bg_purple">#EDE9FE</color>
+    <color name="avatar_text_purple">#7C3AED</color>
+
+    <color name="avatar_bg_blue">#DBEAFE</color>
+    <color name="avatar_text_blue">#2563EB</color>
+
+    <color name="avatar_bg_orange">#FFEDD5</color>
+    <color name="avatar_text_orange">#EA580C</color>
+
+    <color name="avatar_bg_pink">#FCE7F3</color>
+    <color name="avatar_text_pink">#DB2777</color>
 </resources>
