@@ -27,6 +27,7 @@
     <!-- Màn hình 3: Thêm liên hệ -->
     <string name="add_contact_title">Thêm liên hệ</string>
     <string name="action_cancel">Hủy</string>
+    <string name="btn_back">Quay lại</string>
     <string name="name_label">Họ và tên</string>
     <string name="name_hint">Ví dụ: Nguyễn Văn An</string>
     <string name="phone_label">Số điện thoại</string>
