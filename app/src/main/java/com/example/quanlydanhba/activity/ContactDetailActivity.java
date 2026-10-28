@@ -1,5 +1,6 @@
 package com.example.quanlydanhba.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,10 +24,12 @@ import com.example.quanlydanhba.model.Contact;
 
 /**
  * Màn hình 4: Chi tiết liên hệ (ContactDetailActivity)
- * Thiết kế giao diện hiện đại, tối giản đúng theo mẫu phác thảo:
  * - Avatar tròn lớn ở giữa kèm Họ tên & SĐT
  * - Nút gắn sao Yêu thích tương tác trực tiếp
- * - Hàng 3 nút hành động tròn: Gọi điện | Nhắn tin | Chỉnh sửa
+ * - Hàng 3 nút hành động tròn:
+ *     1. Gọi điện (ACTION_DIAL)
+ *     2. Nhắn tin (ACTION_SENDTO)
+ *     3. Chỉnh sửa (Mở EditContactActivity)
  * - Thẻ thông tin Nhóm, Giới tính, Ghi chú
  * - Nút Xóa liên hệ ở dưới cùng
  */
@@ -50,6 +55,18 @@ public class ContactDetailActivity extends AppCompatActivity {
 
     private Contact currentContact;
     private int contactPosition = -1;
+
+    // Launcher mở màn hình Chỉnh sửa liên hệ
+    private final ActivityResultLauncher<Intent> editContactLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Contact updated = (Contact) result.getData().getSerializableExtra("updated_contact");
+                    if (updated != null) {
+                        currentContact = updated;
+                        displayContactData();
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,9 +183,12 @@ public class ContactDetailActivity extends AppCompatActivity {
             }
         });
 
-        // 3. Chỉnh sửa
+        // 3. Chỉnh sửa: Mở EditContactActivity
         btnActionEdit.setOnClickListener(v -> {
-            Toast.makeText(this, "Chức năng chỉnh sửa thông tin liên hệ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ContactDetailActivity.this, EditContactActivity.class);
+            intent.putExtra("contact", currentContact);
+            intent.putExtra("position", contactPosition);
+            editContactLauncher.launch(intent);
         });
 
         // Nút Xóa liên hệ

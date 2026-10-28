@@ -32,6 +32,12 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- Màn hình Sửa liên hệ -->
+        <activity
+            android:name=".activity.EditContactActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- Màn hình 4: Chi tiết liên hệ -->
         <activity
             android:name=".activity.ContactDetailActivity"

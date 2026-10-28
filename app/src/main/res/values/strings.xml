@@ -21,8 +21,12 @@
     <string name="stats_contacts">Liên hệ</string>
     <string name="stats_favorite">Yêu thích</string>
     <string name="contact_list_header">Danh sách liên hệ</string>
+    <string name="favorites_list_header">Danh sách yêu thích</string>
     <string name="contact_list_hint">Nhấn vào một liên hệ để xem chi tiết</string>
     <string name="empty_contact_list">Chưa có liên hệ nào trong danh bạ</string>
+    <string name="empty_search_result">Không tìm thấy liên hệ phù hợp</string>
+    <string name="empty_favorites_list">Chưa có liên hệ yêu thích nào</string>
+    <string name="search_hint">Tìm theo tên hoặc số điện thoại...</string>
 
     <!-- Màn hình 3: Thêm liên hệ -->
     <string name="add_contact_title">Thêm liên hệ</string>
@@ -41,6 +45,11 @@
     <string name="note_label">Ghi chú</string>
     <string name="note_hint">Nhập ghi chú (nhiều dòng)...</string>
     <string name="btn_save_contact">Lưu liên hệ</string>
+
+    <!-- Màn hình Sửa liên hệ -->
+    <string name="edit_contact_title">Chỉnh sửa liên hệ</string>
+    <string name="btn_save_changes">Lưu thay đổi</string>
+    <string name="msg_edit_success">Đã cập nhật thông tin liên hệ!</string>
 
     <!-- Màn hình 4: Chi tiết liên hệ -->
     <string name="detail_title">Chi tiết liên hệ</string>
