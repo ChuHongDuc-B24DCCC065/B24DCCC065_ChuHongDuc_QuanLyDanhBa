@@ -4,11 +4,10 @@
 ---
 
 ### THÔNG TIN SINH VIÊN
-- **Họ và tên:** [Điền họ và tên của bạn]
-- **Mã số sinh viên (MSSV):** [Điền MSSV của bạn]
-- **Lớp:** [Điền tên lớp của bạn]
+- **Họ và tên:** Chu Hồng Đức
+- **Mã số sinh viên (MSSV):** B24DCCC065
 - **Môn học:** Lập trình di động (Android)
-- **Link Git Repository:** https://github.com/[username]/MSSV_HoTen_QuanLyDanhBa
+- **Link Git Repository:** https://github.com/ChuHongDuc-B24DCCC065/B24DCCC065_ChuHongDuc_QuanLyDanhBa
 
 ---
 
